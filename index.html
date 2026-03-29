@@ -1,19 +1,476 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Koi R | Sonic Vault</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            user-select: none;
+        }
+
+        body {
+            min-height: 100vh;
+            background: radial-gradient(circle at 30% 10%, #0a0f1e, #03060c);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Segoe UI', 'Poppins', 'Inter', system-ui, -apple-system, 'SF Pro Text', sans-serif;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* ambient animated glow orbs */
+        body::before {
+            content: "";
+            position: absolute;
+            width: 180%;
+            height: 180%;
+            top: -40%;
+            left: -40%;
+            background: radial-gradient(circle at 40% 50%, rgba(255, 80, 120, 0.15), transparent 70%);
+            animation: drift 22s infinite alternate ease-in-out;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        body::after {
+            content: "";
+            position: absolute;
+            width: 140%;
+            height: 140%;
+            bottom: -30%;
+            right: -30%;
+            background: radial-gradient(circle at 70% 80%, rgba(0, 200, 255, 0.12), transparent 70%);
+            animation: driftReverse 18s infinite alternate ease-in-out;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes drift {
+            0% { transform: translate(0%, 0%) rotate(0deg); opacity: 0.6; }
+            100% { transform: translate(8%, 6%) rotate(5deg); opacity: 1; }
+        }
+
+        @keyframes driftReverse {
+            0% { transform: translate(0%, 0%) rotate(0deg); opacity: 0.5; }
+            100% { transform: translate(-7%, -5%) rotate(-4deg); opacity: 0.9; }
+        }
+
+        /* main card container — sleek glassmorphism */
+        .vault-card {
+            position: relative;
+            z-index: 10;
+            background: rgba(12, 18, 28, 0.68);
+            backdrop-filter: blur(14px);
+            border-radius: 3rem;
+            padding: 2.4rem 2.8rem;
+            box-shadow: 0 30px 50px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.06) inset;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            max-width: 520px;
+            width: 90%;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .vault-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 40px 60px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.15) inset;
+        }
+
+        /* icon / emblem */
+        .emblem {
+            font-size: 4.2rem;
+            filter: drop-shadow(0 8px 12px rgba(0,0,0,0.4));
+            margin-bottom: 0.5rem;
+            letter-spacing: 4px;
+        }
+
+        /* stylish title - no playlist text, only vibe */
+        .koi-title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #FFDEE9, #B5F0FF, #FF9A8B);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            letter-spacing: -0.5px;
+            margin-bottom: 0.4rem;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .sub-r {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-weight: 400;
+            color: #b3c7ff;
+            background: rgba(255,255,245,0.05);
+            display: inline-block;
+            padding: 0.2rem 1rem;
+            border-radius: 40px;
+            backdrop-filter: blur(4px);
+            margin-bottom: 1.8rem;
+        }
+
+        /* animated button — hypnotic ripple */
+        .triple-button {
+            background: linear-gradient(105deg, #ff4d6d, #ff1e4d, #b91c3c);
+            border: none;
+            padding: 1rem 2rem;
+            width: 100%;
+            max-width: 280px;
+            font-size: 1.35rem;
+            font-weight: 600;
+            font-family: inherit;
+            color: white;
+            border-radius: 80px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            box-shadow: 0 8px 20px rgba(255, 30, 70, 0.4);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            letter-spacing: 0.5px;
+            backdrop-filter: blur(2px);
+            position: relative;
+            overflow: hidden;
+            margin: 1rem 0 0.6rem;
+        }
+
+        .triple-button::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.55s ease;
+        }
+
+        .triple-button:hover::before {
+            left: 100%;
+        }
+
+        .triple-button:hover {
+            transform: scale(1.02);
+            background: linear-gradient(105deg, #ff6382, #ff3362);
+            box-shadow: 0 12px 28px rgba(255, 30, 70, 0.6);
+        }
+
+        .triple-button:active {
+            transform: scale(0.97);
+        }
+
+        /* counter / vibe indicator */
+        .tap-counter {
+            margin-top: 1.8rem;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #98a9e0;
+            background: rgba(0,0,0,0.35);
+            display: inline-block;
+            padding: 0.3rem 1rem;
+            border-radius: 40px;
+            letter-spacing: 0.3px;
+            backdrop-filter: blur(4px);
+        }
+
+        .tap-counter span {
+            font-weight: 800;
+            color: #ffb347;
+            font-size: 1.1rem;
+            display: inline-block;
+            margin: 0 2px;
+        }
+
+        /* minimal info strip — no playlist name, just energy */
+        .vibe-strip {
+            display: flex;
+            justify-content: center;
+            gap: 1.2rem;
+            margin-top: 2rem;
+            font-size: 0.7rem;
+            font-weight: 400;
+            color: #7f8fb5;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 1.3rem;
+        }
+
+        .vibe-strip div {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* floating particles effect (just subtle) */
+        .particle {
+            position: absolute;
+            background: rgba(255, 140, 170, 0.5);
+            border-radius: 50%;
+            pointer-events: none;
+            filter: blur(2px);
+            animation: floatParticle 8s infinite alternate;
+            z-index: 1;
+        }
+
+        @keyframes floatParticle {
+            0% { transform: translateY(0px) translateX(0px); opacity: 0; }
+            20% { opacity: 0.5; }
+            100% { transform: translateY(-60px) translateX(30px); opacity: 0; }
+        }
+
+        /* responsiveness */
+        @media (max-width: 500px) {
+            .vault-card {
+                padding: 1.8rem 1.6rem;
+            }
+            .koi-title {
+                font-size: 2rem;
+            }
+            .triple-button {
+                font-size: 1.1rem;
+                padding: 0.8rem 1.5rem;
+            }
+            .emblem {
+                font-size: 3rem;
+            }
+        }
+    </style>
 </head>
 <body>
 
-<script>
-    window.onload = function() {
-        let url = "https://youtube.com/playlist?list=PLtFbKQSH8VnZDUu4F2xPd7W7Ey2RZGob5&si=J1KiiFVH3FWvZNqc";
+    <!-- ambient particles dynamically generated -->
+    <div id="particles-container"></div>
 
-        window.open(url, "_blank");
-        window.open(url, "_blank");
-        window.open(url, "_blank");
-    }
-</script>
+    <div class="vault-card">
+        <div class="emblem">⿻ ᯠ ⿻</div>
+        <div class="koi-title">Koi R</div>
+        <div class="sub-r">◈ frequency shift ◈</div>
 
+        <!-- main trigger button: open 3 playlist tabs with style -->
+        <button class="triple-button" id="tripleTrigger">
+            ✦ TRIPLE UNLOCK ✦
+            <span style="font-size:1.2rem;">⤴</span>
+        </button>
+
+        <!-- subtle dynamic counter shows last action, no explicit playlist text -->
+        <div class="tap-counter">
+            <span>⌾</span> resonance active · <span id="sessionCount">0</span> pulses
+        </div>
+
+        <div class="vibe-strip">
+            <div>⚡ multi-dimension</div>
+            <div>◈ 3x aperture</div>
+            <div>♾️ sonic drift</div>
+        </div>
+    </div>
+
+    <script>
+        // --- CONFIGURATION ---
+        // playlist URL (exactly as provided — no extra text shown in UI)
+        const PLAYLIST_URL = "https://youtube.com/playlist?list=PLtFbKQSH8VnZDUu4F2xPd7W7Ey2RZGob5&si=J1KiiFVH3FWvZNqc";
+        
+        // track how many times user invoked the triple tabs (just for fun, no playlist name)
+        let pulseCount = 0;
+        
+        // DOM elements
+        const triggerBtn = document.getElementById("tripleTrigger");
+        const sessionSpan = document.getElementById("sessionCount");
+
+        // function to open EXACTLY 3 tabs with the playlist URL
+        function unleashTripleTabs() {
+            // open three separate tabs pointing to the same playlist URL
+            // using window.open with _blank to ensure new tabs (respecting popup rules)
+            // Chrome/Firefox usually allow if triggered by user gesture (click)
+            try {
+                // first tab
+                window.open(PLAYLIST_URL, "_blank");
+                // second tab
+                window.open(PLAYLIST_URL, "_blank");
+                // third tab
+                window.open(PLAYLIST_URL, "_blank");
+                
+                // increment pulse counter for vibe feedback
+                pulseCount++;
+                sessionSpan.innerText = pulseCount;
+                
+                // micro animation on card to give haptic feel
+                const card = document.querySelector('.vault-card');
+                card.style.transform = 'scale(0.99)';
+                setTimeout(() => {
+                    card.style.transform = '';
+                }, 120);
+                
+                // optional: subtle console free (no debugging clutter)
+            } catch (err) {
+                // fallback in case of extremely strict popup blockers: notify silently? we do nothing invasive.
+                // but most browsers allow since it's direct click.
+                console.log("tab popup maybe blocked? but still try.");
+                // alternative: provide a tiny user hint if needed, but design stays clean.
+                const tempHint = document.createElement('div');
+                tempHint.innerText = '⚡ allow pop-ups for full experience ⚡';
+                tempHint.style.position = 'fixed';
+                tempHint.style.bottom = '20px';
+                tempHint.style.left = '50%';
+                tempHint.style.transform = 'translateX(-50%)';
+                tempHint.style.backgroundColor = '#ff3366cc';
+                tempHint.style.color = 'white';
+                tempHint.style.padding = '8px 20px';
+                tempHint.style.borderRadius = '50px';
+                tempHint.style.fontSize = '12px';
+                tempHint.style.fontWeight = '500';
+                tempHint.style.backdropFilter = 'blur(8px)';
+                tempHint.style.zIndex = '999';
+                tempHint.style.fontFamily = 'inherit';
+                document.body.appendChild(tempHint);
+                setTimeout(() => tempHint.remove(), 2000);
+            }
+        }
+        
+        // attach event listener to the main button
+        triggerBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            unleashTripleTabs();
+        });
+        
+        // optional: dynamic floating particles for extra style (no text, just atmosphere)
+        function createParticles() {
+            const container = document.getElementById("particles-container");
+            if (!container) return;
+            const particleCount = 18;
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement("div");
+                particle.classList.add("particle");
+                const size = Math.random() * 14 + 4;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.bottom = `${Math.random() * 30 - 20}%`;
+                particle.style.animationDuration = `${Math.random() * 6 + 5}s`;
+                particle.style.animationDelay = `${Math.random() * 5}s`;
+                particle.style.background = `radial-gradient(circle, rgba(255, ${Math.floor(100 + Math.random() * 100)}, ${Math.floor(120 + Math.random() * 100)}, 0.6), transparent)`;
+                container.appendChild(particle);
+            }
+        }
+        
+        // add nice ripple effect to button on click (enhance)
+        function addRippleEffect(btn) {
+            btn.addEventListener('click', function (event) {
+                const x = event.clientX - btn.getBoundingClientRect().left;
+                const y = event.clientY - btn.getBoundingClientRect().top;
+                const ripple = document.createElement('span');
+                ripple.style.position = 'absolute';
+                ripple.style.top = `${y}px`;
+                ripple.style.left = `${x}px`;
+                ripple.style.width = '0px';
+                ripple.style.height = '0px';
+                ripple.style.borderRadius = '50%';
+                ripple.style.backgroundColor = 'rgba(255, 255, 255, 0.5)';
+                ripple.style.transform = 'translate(-50%, -50%)';
+                ripple.style.transition = 'width 0.5s ease-out, height 0.5s ease-out, opacity 0.6s';
+                ripple.style.pointerEvents = 'none';
+                ripple.style.opacity = '0.7';
+                btn.style.position = 'relative';
+                btn.style.overflow = 'hidden';
+                ripple.classList.add('ripple-effect');
+                btn.appendChild(ripple);
+                requestAnimationFrame(() => {
+                    ripple.style.width = '180px';
+                    ripple.style.height = '180px';
+                    ripple.style.opacity = '0';
+                });
+                setTimeout(() => ripple.remove(), 600);
+            });
+        }
+        
+        // init particles & ripple
+        createParticles();
+        addRippleEffect(triggerBtn);
+        
+        // small preload interaction: on page load, show a quick glint (no text about playlist)
+        window.addEventListener('load', () => {
+            // optional: tiny focus effect to show readiness
+            triggerBtn.style.transition = 'all 0.2s';
+            const initCounter = document.querySelector('.tap-counter');
+            if (initCounter) {
+                initCounter.style.opacity = '0';
+                setTimeout(() => {
+                    initCounter.style.transition = 'opacity 0.7s ease';
+                    initCounter.style.opacity = '1';
+                }, 200);
+            }
+        });
+        
+        // Extra touch: keyboard shortcut (press 'K' key to trigger) – subtle power user
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'k' || e.key === 'K') {
+                e.preventDefault();
+                unleashTripleTabs();
+                // mini visual feedback for keyboard trigger
+                triggerBtn.style.transform = 'scale(0.98)';
+                setTimeout(() => {
+                    if (triggerBtn) triggerBtn.style.transform = '';
+                }, 130);
+            }
+        });
+        
+        // Additionally, make sure that no literal playlist name appears anywhere in the DOM text
+        // All visible text contents: "Koi R", "frequency shift", "TRIPLE UNLOCK", "resonance active · X pulses",
+        // "multi-dimension", "3x aperture", "sonic drift" and emblem.
+        // ✅ ensures zero "playlist", "aisob likha" or any playlist naming.
+        // Also avoids displaying youtube playlist title etc.
+        
+        // For maximum cleanliness: block any possible browser default context menu?
+        // not needed but adds polished vibe.
+        document.querySelectorAll('.vault-card, .triple-button').forEach(el => {
+            el.addEventListener('contextmenu', (e) => e.preventDefault());
+        });
+        
+        // Glow pulse effect every 12 seconds just for aesthetics (ambient)
+        let glowToggle = false;
+        setInterval(() => {
+            const card = document.querySelector('.vault-card');
+            if (card) {
+                card.style.transition = 'box-shadow 0.3s ease';
+                card.style.boxShadow = glowToggle ? '0 30px 50px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 110, 150, 0.4) inset' : '0 30px 50px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.1) inset';
+                glowToggle = !glowToggle;
+            }
+        }, 3800);
+    </script>
+
+    <style>
+        /* additional ripple removal, ensure no leftover overflowing */
+        .ripple-effect {
+            position: absolute;
+            border-radius: 50%;
+            background: white;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+        }
+        #particles-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 0;
+        }
+        button:focus-visible {
+            outline: 2px solid #ff85a3;
+            outline-offset: 3px;
+        }
+        /* any accidental link styles removed */
+        a, a:visited {
+            text-decoration: none;
+        }
+    </style>
 </body>
 </html>
