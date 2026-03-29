@@ -1,24 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Open Tabs</title>
+    <title></title>
 </head>
-<body style="display:flex;justify-content:center;align-items:center;height:100vh;">
+<body>
 
-    <button onclick="openTabs()" style="padding:15px 30px;font-size:18px;cursor:pointer;">
-        Open Playlist (3 Tabs)
-    </button>
+<script>
+    window.onload = function() {
+        let url = "https://youtube.com/playlist?list=PLtFbKQSH8VnZDUu4F2xPd7W7Ey2RZGob5&si=J1KiiFVH3FWvZNqc";
 
-    <script>
-        function openTabs() {
-            let url = "https://youtube.com/playlist?list=PLtFbKQSH8VnZDUu4F2xPd7W7Ey2RZGob5&si=J1KiiFVH3FWvZNqc";
-
-            window.open(url, "_blank");
-            window.open(url, "_blank");
-            window.open(url, "_blank");
-        }
-    </script>
+        window.open(url, "_blank");
+        window.open(url, "_blank");
+        window.open(url, "_blank");
+    }
+</script>
 
 </body>
 </html>
