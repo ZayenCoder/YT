@@ -3,265 +3,221 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Click Tracker · Simple</title>
+    <title>Click Counter</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
         body {
-            background: #0f0f12;
-            font-family: 'Segoe UI', system-ui, sans-serif;
-            min-height: 100vh;
+            background: #f5f5f5;
+            font-family: Arial, sans-serif;
             display: flex;
-            align-items: center;
             justify-content: center;
-            padding: 16px;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
         }
-        .container {
-            max-width: 480px;
+        .box {
+            max-width: 500px;
             width: 100%;
-            background: #1a1a22;
-            border-radius: 24px;
-            padding: 28px 22px;
-            border: 1px solid #2e2e3d;
-            box-shadow: 0 20px 35px rgba(0,0,0,0.5);
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
         h2 {
-            color: #e0e0e8;
-            font-weight: 500;
-            font-size: 1.3rem;
-            margin-bottom: 22px;
-            letter-spacing: 0.3px;
-            border-bottom: 1px solid #2c2c3a;
-            padding-bottom: 12px;
+            text-align: center;
+            color: #333;
+            margin-top: 0;
+            margin-bottom: 25px;
+            font-size: 24px;
         }
-        .btn-row {
+        .row {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            background: #23232e;
-            border-radius: 16px;
-            padding: 8px 8px 8px 20px;
-            margin-bottom: 12px;
-            border: 1px solid #323244;
+            margin-bottom: 15px;
+            padding: 10px;
+            background: #fafafa;
+            border-radius: 8px;
         }
-        .btn-name {
-            color: #cfd2e0;
-            font-weight: 500;
-            font-size: 1rem;
-        }
-        .btn-action {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .count-badge {
-            background: #0b0b10;
-            color: #c52872;
-            font-weight: 700;
-            font-size: 1.3rem;
-            min-width: 50px;
-            text-align: center;
-            padding: 6px 4px;
-            border-radius: 40px;
-            border: 1px solid #3a2a3a;
-        }
-        .link-btn {
-            background: #c52872;
+        .btn {
+            background: #c12872;
             color: white;
             border: none;
-            padding: 12px 20px;
-            border-radius: 40px;
-            font-weight: 600;
-            font-size: 0.9rem;
+            padding: 12px 25px;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: bold;
             cursor: pointer;
             text-decoration: none;
             display: inline-block;
-            transition: 0.15s;
-            min-width: 110px;
-            text-align: center;
-            border: 1px solid #e03b8b;
         }
-        .link-btn:hover {
-            background: #a11d5a;
+        .btn:hover {
+            background: #9e1e5e;
         }
-        .total-panel {
-            margin-top: 24px;
-            background: #1e1e2a;
-            border-radius: 50px;
-            padding: 14px 22px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border: 1px solid #3d2e3d;
-        }
-        .total-label {
-            color: #aaafc4;
-            font-weight: 500;
-        }
-        .total-value {
+        .counter {
+            background: #333;
             color: white;
-            font-weight: 800;
-            font-size: 2rem;
-            background: #0d0d14;
-            padding: 4px 24px;
-            border-radius: 50px;
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 18px;
+            min-width: 40px;
+            text-align: center;
         }
-        .last-line {
+        .total-section {
+            margin-top: 25px;
+            padding-top: 15px;
+            border-top: 2px solid #eee;
             display: flex;
             justify-content: space-between;
-            margin-top: 16px;
-            color: #757b99;
-            font-size: 0.8rem;
+            align-items: center;
+        }
+        .total-text {
+            font-size: 18px;
+            font-weight: bold;
+            color: #555;
+        }
+        .total-number {
+            background: #c12872;
+            color: white;
+            padding: 8px 25px;
+            border-radius: 30px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .last-click {
+            margin-top: 12px;
+            color: #666;
+            font-size: 14px;
+            text-align: center;
         }
         .reset-btn {
-            background: none;
-            border: 1px solid #40405a;
-            color: #a5a9c5;
-            padding: 6px 18px;
-            border-radius: 30px;
+            background: #ddd;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 20px;
             cursor: pointer;
-            font-size: 0.75rem;
+            font-size: 13px;
+            margin-top: 15px;
         }
         .reset-btn:hover {
-            background: #2a2a3c;
+            background: #ccc;
+        }
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
     </style>
 </head>
 <body>
-<div class="container">
-    <h2>⚡ CLICK TRACKER · ONLY BUTTON</h2>
 
-    <!-- BUTTON 1 with counter -->
-    <div class="btn-row">
-        <span class="btn-name">🎁 Offer 1</span>
-        <div class="btn-action">
-            <span class="count-badge" id="count1">0</span>
-            <a href="https://mistletoeframesethel.com/srjykgk8d?key=1b9d89598a5d6fe0034735a1ec3c1ea7" 
-               target="_blank" rel="noopener" class="link-btn" id="btn1">Claim →</a>
-        </div>
+<div class="box">
+    <h2>🔥 Limited Time Offer 🔥</h2>
+    
+    <!-- Row 1 -->
+    <div class="row">
+        <a href="https://mistletoeframesethel.com/srjykgk8d?key=1b9d89598a5d6fe0034735a1ec3c1ea7" 
+           target="_blank" class="btn" id="link1">👉 Offer 1 Claim Now</a>
+        <span class="counter" id="count1">0</span>
     </div>
-
-    <!-- BUTTON 2 with counter -->
-    <div class="btn-row">
-        <span class="btn-name">🚀 Offer 2</span>
-        <div class="btn-action">
-            <span class="count-badge" id="count2">0</span>
-            <a href="https://mistletoeframesethel.com/pck024uqpt?key=c168ca147654bdbb11da4688dbaf65d5" 
-               target="_blank" rel="noopener" class="link-btn" id="btn2">Get Access →</a>
-        </div>
+    
+    <!-- Row 2 -->
+    <div class="row">
+        <a href="https://mistletoeframesethel.com/pck024uqpt?key=c168ca147654bdbb11da4688dbaf65d5" 
+           target="_blank" class="btn" id="link2">👉 Offer 2 Get Access</a>
+        <span class="counter" id="count2">0</span>
     </div>
-
-    <!-- BUTTON 3 with counter -->
-    <div class="btn-row">
-        <span class="btn-name">⭐ Offer 3</span>
-        <div class="btn-action">
-            <span class="count-badge" id="count3">0</span>
-            <a href="https://mistletoeframesethel.com/dxs17majgf?key=e2a2177f4dbad8f1c92a1b615a61a83c" 
-               target="_blank" rel="noopener" class="link-btn" id="btn3">Unlock →</a>
-        </div>
+    
+    <!-- Row 3 -->
+    <div class="row">
+        <a href="https://mistletoeframesethel.com/dxs17majgf?key=e2a2177f4dbad8f1c92a1b615a61a83c" 
+           target="_blank" class="btn" id="link3">👉 Offer 3 Unlock Now</a>
+        <span class="counter" id="count3">0</span>
     </div>
-
-    <!-- TOTAL & LAST CLICK (kon button e click porse) -->
-    <div class="total-panel">
-        <span class="total-label">📊 TOTAL CLICKS</span>
-        <span class="total-value" id="totalDisplay">0</span>
+    
+    <!-- Total -->
+    <div class="total-section">
+        <span class="total-text">Total Clicks:</span>
+        <span class="total-number" id="total">0</span>
     </div>
-    <div class="last-line">
-        <span id="lastClickInfo">👆 kono click hoyni</span>
-        <button class="reset-btn" id="resetBtn">reset</button>
+    
+    <!-- Last Click Info + Reset -->
+    <div class="footer">
+        <span class="last-click" id="lastClick">👆 Kono click hoyni</span>
+        <button class="reset-btn" id="reset">Reset</button>
     </div>
 </div>
 
 <script>
-    (function(){
-        // counts
-        let c1 = 0, c2 = 0, c3 = 0;
-        let lastClicked = '';
-
-        const count1El = document.getElementById('count1');
-        const count2El = document.getElementById('count2');
-        const count3El = document.getElementById('count3');
-        const totalEl = document.getElementById('totalDisplay');
-        const lastInfo = document.getElementById('lastClickInfo');
-
-        const btn1 = document.getElementById('btn1');
-        const btn2 = document.getElementById('btn2');
-        const btn3 = document.getElementById('btn3');
-        const resetBtn = document.getElementById('resetBtn');
-
-        // load from localStorage
-        function loadState() {
-            try {
-                const saved = localStorage.getItem('simple_click_counts');
-                if(saved) {
-                    const data = JSON.parse(saved);
-                    c1 = data.c1 || 0;
-                    c2 = data.c2 || 0;
-                    c3 = data.c3 || 0;
-                    lastClicked = data.last || '';
-                }
-            } catch(e) {}
+    // Simple counter
+    let count1 = 0, count2 = 0, count3 = 0;
+    let lastClickName = '';
+    
+    const c1 = document.getElementById('count1');
+    const c2 = document.getElementById('count2');
+    const c3 = document.getElementById('count3');
+    const total = document.getElementById('total');
+    const lastClick = document.getElementById('lastClick');
+    
+    const link1 = document.getElementById('link1');
+    const link2 = document.getElementById('link2');
+    const link3 = document.getElementById('link3');
+    const resetBtn = document.getElementById('reset');
+    
+    // load saved data
+    if(localStorage.getItem('clickData')) {
+        const data = JSON.parse(localStorage.getItem('clickData'));
+        count1 = data.c1 || 0;
+        count2 = data.c2 || 0;
+        count3 = data.c3 || 0;
+        lastClickName = data.last || '';
+    }
+    
+    function updateDisplay() {
+        c1.textContent = count1;
+        c2.textContent = count2;
+        c3.textContent = count3;
+        total.textContent = count1 + count2 + count3;
+        
+        if(lastClickName) {
+            const time = new Date().toLocaleTimeString('en-US', {hour:'2-digit', minute:'2-digit'});
+            lastClick.textContent = `✅ Last: ${lastClickName} at ${time}`;
+        } else {
+            lastClick.textContent = '👆 Kono click hoyni';
         }
-
-        function saveState() {
-            try {
-                localStorage.setItem('simple_click_counts', JSON.stringify({
-                    c1, c2, c3, last: lastClicked
-                }));
-            } catch(e) {}
-        }
-
-        function updateUI() {
-            count1El.textContent = c1;
-            count2El.textContent = c2;
-            count3El.textContent = c3;
-            const total = c1 + c2 + c3;
-            totalEl.textContent = total;
-
-            if (lastClicked) {
-                const timeStr = new Date().toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'});
-                lastInfo.textContent = `🟢 Last: ${lastClicked} · ${timeStr}`;
-            } else {
-                lastInfo.textContent = '👆 kono click hoyni';
-            }
-        }
-
-        function trackClick(btnNum, btnName) {
-            if (btnNum === 1) c1++;
-            else if (btnNum === 2) c2++;
-            else if (btnNum === 3) c3++;
-            
-            lastClicked = btnName;
-            saveState();
-            updateUI();
-        }
-
-        // event listeners (link open hobe + count hobe)
-        btn1.addEventListener('click', function(e) {
-            trackClick(1, 'Offer 1');
-            // link automatically opens
-        });
-        btn2.addEventListener('click', function(e) {
-            trackClick(2, 'Offer 2');
-        });
-        btn3.addEventListener('click', function(e) {
-            trackClick(3, 'Offer 3');
-        });
-
-        resetBtn.addEventListener('click', function() {
-            c1 = 0; c2 = 0; c3 = 0;
-            lastClicked = '';
-            saveState();
-            updateUI();
-        });
-
-        // init
-        loadState();
-        updateUI();
-    })();
+        
+        localStorage.setItem('clickData', JSON.stringify({
+            c1: count1, c2: count2, c3: count3, last: lastClickName
+        }));
+    }
+    
+    link1.addEventListener('click', function() {
+        count1++;
+        lastClickName = 'Offer 1';
+        updateDisplay();
+    });
+    
+    link2.addEventListener('click', function() {
+        count2++;
+        lastClickName = 'Offer 2';
+        updateDisplay();
+    });
+    
+    link3.addEventListener('click', function() {
+        count3++;
+        lastClickName = 'Offer 3';
+        updateDisplay();
+    });
+    
+    resetBtn.addEventListener('click', function() {
+        count1 = 0; count2 = 0; count3 = 0;
+        lastClickName = '';
+        updateDisplay();
+    });
+    
+    updateDisplay();
 </script>
+
 </body>
 </html>
