@@ -1,390 +1,267 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>🔥 Live Tracker · Working Links</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    body {
-      background: linear-gradient(145deg, #f1f4f9 0%, #e9eef4 100%);
-      font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-    }
-    .tracker-card {
-      max-width: 900px;
-      width: 100%;
-      background: rgba(255,255,255,0.95);
-      backdrop-filter: blur(10px);
-      border-radius: 36px;
-      padding: 32px 30px;
-      box-shadow: 0 25px 45px -10px rgba(0,0,0,0.15);
-      border: 1px solid rgba(255,255,255,0.5);
-    }
-    h1 {
-      font-size: 2.4rem;
-      font-weight: 700;
-      background: linear-gradient(135deg, #9f174d, #5e0e2f);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      margin-bottom: 6px;
-    }
-    .sub {
-      color: #4a5568;
-      margin-bottom: 28px;
-      font-weight: 400;
-      border-left: 4px solid #c52872;
-      padding-left: 18px;
-    }
-    .stats-container {
-      background: #1e2430;
-      border-radius: 24px;
-      padding: 22px 26px;
-      margin-bottom: 28px;
-      color: white;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .total-box {
-      display: flex;
-      align-items: baseline;
-      gap: 12px;
-    }
-    .total-label {
-      font-weight: 400;
-      letter-spacing: 1px;
-      opacity: 0.8;
-    }
-    .total-number {
-      font-size: 3.8rem;
-      font-weight: 800;
-      line-height: 1;
-      background: #ffffff;
-      color: #1e2430;
-      padding: 6px 22px;
-      border-radius: 60px;
-    }
-    .per-link-stats {
-      display: flex;
-      gap: 28px;
-    }
-    .stat-chip {
-      background: #2f3749;
-      padding: 8px 22px;
-      border-radius: 40px;
-      font-weight: 500;
-    }
-    .stat-chip span {
-      font-weight: 800;
-      margin-left: 8px;
-      color: #ffb3d1;
-    }
-    .last-click-panel {
-      background: #ffffffd9;
-      border-radius: 20px;
-      padding: 14px 22px;
-      margin-bottom: 30px;
-      border: 1px solid #dee4ed;
-      display: flex;
-      align-items: center;
-      gap: 18px;
-      flex-wrap: wrap;
-    }
-    .last-badge {
-      background: #1e2430;
-      color: white;
-      padding: 5px 18px;
-      border-radius: 30px;
-      font-weight: 600;
-      font-size: 0.8rem;
-    }
-    .last-detail {
-      font-weight: 500;
-      color: #1e293b;
-    }
-    .link-grid {
-      display: grid;
-      grid-template-columns: repeat(3,1fr);
-      gap: 18px;
-    }
-    .link-card {
-      background: white;
-      border-radius: 24px;
-      padding: 22px 10px 18px;
-      text-align: center;
-      box-shadow: 0 10px 18px -8px rgba(0,0,0,0.08);
-      border: 1.5px solid #e2e8f0;
-      transition: all 0.2s;
-    }
-    .link-card:hover {
-      border-color: #c52872;
-      transform: translateY(-5px);
-      box-shadow: 0 22px 28px -14px rgba(197,40,114,0.2);
-    }
-    .link-emoji {
-      font-size: 2.5rem;
-      margin-bottom: 8px;
-    }
-    .link-title {
-      font-weight: 700;
-      font-size: 1.3rem;
-      margin-bottom: 10px;
-      color: #1e1e2a;
-    }
-    .real-link {
-      display: inline-block;
-      background: #c52872;
-      color: white;
-      text-decoration: none;
-      font-weight: 600;
-      padding: 12px 20px;
-      border-radius: 50px;
-      width: 100%;
-      max-width: 200px;
-      margin: 6px auto 0;
-      transition: background 0.15s;
-      border: none;
-      cursor: pointer;
-      font-size: 1rem;
-    }
-    .real-link:hover {
-      background: #a11d5a;
-    }
-    .reset-btn {
-      margin-top: 28px;
-      background: none;
-      border: 1px solid #b9c2d0;
-      padding: 8px 24px;
-      border-radius: 40px;
-      font-weight: 500;
-      color: #334155;
-      cursor: pointer;
-      float: right;
-    }
-    .reset-btn:hover {
-      background: #f1f5f9;
-    }
-    .clearfix::after {
-      content: "";
-      clear: both;
-      display: table;
-    }
-    @media (max-width:650px){
-      .link-grid{ grid-template-columns:1fr; }
-      .stats-container{ flex-direction:column; align-items:start; gap:16px; }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Click Tracker · Simple</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: #0f0f12;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+        }
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background: #1a1a22;
+            border-radius: 24px;
+            padding: 28px 22px;
+            border: 1px solid #2e2e3d;
+            box-shadow: 0 20px 35px rgba(0,0,0,0.5);
+        }
+        h2 {
+            color: #e0e0e8;
+            font-weight: 500;
+            font-size: 1.3rem;
+            margin-bottom: 22px;
+            letter-spacing: 0.3px;
+            border-bottom: 1px solid #2c2c3a;
+            padding-bottom: 12px;
+        }
+        .btn-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #23232e;
+            border-radius: 16px;
+            padding: 8px 8px 8px 20px;
+            margin-bottom: 12px;
+            border: 1px solid #323244;
+        }
+        .btn-name {
+            color: #cfd2e0;
+            font-weight: 500;
+            font-size: 1rem;
+        }
+        .btn-action {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .count-badge {
+            background: #0b0b10;
+            color: #c52872;
+            font-weight: 700;
+            font-size: 1.3rem;
+            min-width: 50px;
+            text-align: center;
+            padding: 6px 4px;
+            border-radius: 40px;
+            border: 1px solid #3a2a3a;
+        }
+        .link-btn {
+            background: #c52872;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: 0.15s;
+            min-width: 110px;
+            text-align: center;
+            border: 1px solid #e03b8b;
+        }
+        .link-btn:hover {
+            background: #a11d5a;
+        }
+        .total-panel {
+            margin-top: 24px;
+            background: #1e1e2a;
+            border-radius: 50px;
+            padding: 14px 22px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border: 1px solid #3d2e3d;
+        }
+        .total-label {
+            color: #aaafc4;
+            font-weight: 500;
+        }
+        .total-value {
+            color: white;
+            font-weight: 800;
+            font-size: 2rem;
+            background: #0d0d14;
+            padding: 4px 24px;
+            border-radius: 50px;
+        }
+        .last-line {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 16px;
+            color: #757b99;
+            font-size: 0.8rem;
+        }
+        .reset-btn {
+            background: none;
+            border: 1px solid #40405a;
+            color: #a5a9c5;
+            padding: 6px 18px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 0.75rem;
+        }
+        .reset-btn:hover {
+            background: #2a2a3c;
+        }
+    </style>
 </head>
 <body>
-<div class="tracker-card">
-  <h1>🔥 LINK TRACKER</h1>
-  <div class="sub">click → count → link opens · professional</div>
+<div class="container">
+    <h2>⚡ CLICK TRACKER · ONLY BUTTON</h2>
 
-  <!-- STATS -->
-  <div class="stats-container">
-    <div class="total-box">
-      <span class="total-label">TOTAL CLICKS</span>
-      <span class="total-number" id="totalDisplay">0</span>
+    <!-- BUTTON 1 with counter -->
+    <div class="btn-row">
+        <span class="btn-name">🎁 Offer 1</span>
+        <div class="btn-action">
+            <span class="count-badge" id="count1">0</span>
+            <a href="https://mistletoeframesethel.com/srjykgk8d?key=1b9d89598a5d6fe0034735a1ec3c1ea7" 
+               target="_blank" rel="noopener" class="link-btn" id="btn1">Claim →</a>
+        </div>
     </div>
-    <div class="per-link-stats">
-      <div class="stat-chip">🔗 LINK 1 <span id="count1">0</span></div>
-      <div class="stat-chip">🔗 LINK 2 <span id="count2">0</span></div>
-      <div class="stat-chip">🔗 LINK 3 <span id="count3">0</span></div>
-    </div>
-  </div>
 
-  <!-- LAST CLICK INFO (kon link e click porse) -->
-  <div class="last-click-panel">
-    <span class="last-badge">LAST CLICK</span>
-    <span class="last-detail" id="lastClickText">⏳ kono click hoyni</span>
-  </div>
+    <!-- BUTTON 2 with counter -->
+    <div class="btn-row">
+        <span class="btn-name">🚀 Offer 2</span>
+        <div class="btn-action">
+            <span class="count-badge" id="count2">0</span>
+            <a href="https://mistletoeframesethel.com/pck024uqpt?key=c168ca147654bdbb11da4688dbaf65d5" 
+               target="_blank" rel="noopener" class="link-btn" id="btn2">Get Access →</a>
+        </div>
+    </div>
 
-  <!-- 3 REAL LINKS (working external links) -->
-  <div class="link-grid">
-    <!-- Offer 1 -->
-    <div class="link-card">
-      <div class="link-emoji">🎁</div>
-      <div class="link-title">Offer One</div>
-      <a href="https://www.google.com" target="_blank" rel="noopener" class="real-link" id="link1">Claim Offer 1 ↗</a>
-      <div style="font-size:0.75rem; margin-top:8px; opacity:0.6;">google.com</div>
+    <!-- BUTTON 3 with counter -->
+    <div class="btn-row">
+        <span class="btn-name">⭐ Offer 3</span>
+        <div class="btn-action">
+            <span class="count-badge" id="count3">0</span>
+            <a href="https://mistletoeframesethel.com/dxs17majgf?key=e2a2177f4dbad8f1c92a1b615a61a83c" 
+               target="_blank" rel="noopener" class="link-btn" id="btn3">Unlock →</a>
+        </div>
     </div>
-    <!-- Offer 2 -->
-    <div class="link-card">
-      <div class="link-emoji">🚀</div>
-      <div class="link-title">Premium Access</div>
-      <a href="https://www.github.com" target="_blank" rel="noopener" class="real-link" id="link2">Get Offer 2 ↗</a>
-      <div style="font-size:0.75rem; margin-top:8px; opacity:0.6;">github.com</div>
+
+    <!-- TOTAL & LAST CLICK (kon button e click porse) -->
+    <div class="total-panel">
+        <span class="total-label">📊 TOTAL CLICKS</span>
+        <span class="total-value" id="totalDisplay">0</span>
     </div>
-    <!-- Offer 3 -->
-    <div class="link-card">
-      <div class="link-emoji">⭐</div>
-      <div class="link-title">Exclusive Deal</div>
-      <a href="https://www.wikipedia.org" target="_blank" rel="noopener" class="real-link" id="link3">Unlock Offer 3 ↗</a>
-      <div style="font-size:0.75rem; margin-top:8px; opacity:0.6;">wikipedia.org</div>
+    <div class="last-line">
+        <span id="lastClickInfo">👆 kono click hoyni</span>
+        <button class="reset-btn" id="resetBtn">reset</button>
     </div>
-  </div>
-  
-  <div class="clearfix">
-    <button class="reset-btn" id="resetBtn">↻ reset all counts</button>
-  </div>
-  <div style="margin-top:12px; font-size:0.8rem; color:#5e6f88;">✅ link open hoy + prottek click count hobe</div>
 </div>
 
 <script>
-  (function(){
-    "use strict";
+    (function(){
+        // counts
+        let c1 = 0, c2 = 0, c3 = 0;
+        let lastClicked = '';
 
-    // --- State ---
-    let counts = {
-      link1: 0,
-      link2: 0,
-      link3: 0
-    };
-    
-    let lastClick = {
-      name: null,
-      time: null
-    };
+        const count1El = document.getElementById('count1');
+        const count2El = document.getElementById('count2');
+        const count3El = document.getElementById('count3');
+        const totalEl = document.getElementById('totalDisplay');
+        const lastInfo = document.getElementById('lastClickInfo');
 
-    // DOM elements
-    const totalSpan = document.getElementById('totalDisplay');
-    const count1Span = document.getElementById('count1');
-    const count2Span = document.getElementById('count2');
-    const count3Span = document.getElementById('count3');
-    const lastClickText = document.getElementById('lastClickText');
+        const btn1 = document.getElementById('btn1');
+        const btn2 = document.getElementById('btn2');
+        const btn3 = document.getElementById('btn3');
+        const resetBtn = document.getElementById('resetBtn');
 
-    const link1 = document.getElementById('link1');
-    const link2 = document.getElementById('link2');
-    const link3 = document.getElementById('link3');
-    const resetBtn = document.getElementById('resetBtn');
-
-    // Helper: total
-    function calcTotal() {
-      return counts.link1 + counts.link2 + counts.link3;
-    }
-
-    // Update UI (fast)
-    function refreshUI() {
-      totalSpan.textContent = calcTotal();
-      count1Span.textContent = counts.link1;
-      count2Span.textContent = counts.link2;
-      count3Span.textContent = counts.link3;
-
-      if (lastClick.name && lastClick.time) {
-        const timeStr = new Date(lastClick.time).toLocaleTimeString([], {hour:'2-digit', minute:'2-digit', second:'2-digit'});
-        lastClickText.textContent = `🔔 ${lastClick.name} · ${timeStr}`;
-      } else {
-        lastClickText.textContent = '⏳ kono click hoyni';
-      }
-    }
-
-    // Save to localStorage (professional persistence)
-    function saveToStorage() {
-      try {
-        localStorage.setItem('clickTracker_pro', JSON.stringify({
-          counts: counts,
-          lastClick: lastClick
-        }));
-      } catch(e) {}
-    }
-
-    // Load from storage
-    function loadFromStorage() {
-      try {
-        const saved = localStorage.getItem('clickTracker_pro');
-        if (saved) {
-          const data = JSON.parse(saved);
-          if (data.counts) {
-            counts.link1 = Number(data.counts.link1) || 0;
-            counts.link2 = Number(data.counts.link2) || 0;
-            counts.link3 = Number(data.counts.link3) || 0;
-          }
-          if (data.lastClick) {
-            lastClick.name = data.lastClick.name || null;
-            lastClick.time = data.lastClick.time || null;
-          }
+        // load from localStorage
+        function loadState() {
+            try {
+                const saved = localStorage.getItem('simple_click_counts');
+                if(saved) {
+                    const data = JSON.parse(saved);
+                    c1 = data.c1 || 0;
+                    c2 = data.c2 || 0;
+                    c3 = data.c3 || 0;
+                    lastClicked = data.last || '';
+                }
+            } catch(e) {}
         }
-      } catch(e) {}
-    }
 
-    // Core click handler: count + link open hoy (link already works, we just track)
-    function handleClick(linkKey, displayName, element) {
-      // increment counter
-      counts[linkKey] += 1;
-      
-      // last click info
-      lastClick.name = displayName;
-      lastClick.time = Date.now();
-      
-      // persist & update UI
-      saveToStorage();
-      refreshUI();
-      
-      // subtle flash feedback on total
-      totalSpan.style.transition = 'background 0.1s';
-      totalSpan.style.background = '#fcd3e1';
-      setTimeout(() => totalSpan.style.background = '#ffffff', 120);
-      
-      // (link will open normally because it's a real <a> tag)
-    }
+        function saveState() {
+            try {
+                localStorage.setItem('simple_click_counts', JSON.stringify({
+                    c1, c2, c3, last: lastClicked
+                }));
+            } catch(e) {}
+        }
 
-    // Reset
-    function resetAll() {
-      counts.link1 = 0;
-      counts.link2 = 0;
-      counts.link3 = 0;
-      lastClick.name = null;
-      lastClick.time = null;
-      saveToStorage();
-      refreshUI();
-    }
+        function updateUI() {
+            count1El.textContent = c1;
+            count2El.textContent = c2;
+            count3El.textContent = c3;
+            const total = c1 + c2 + c3;
+            totalEl.textContent = total;
 
-    // Attach listeners — we use click event on <a> but do NOT preventDefault (so link opens)
-    function bindEvents() {
-      link1.addEventListener('click', function(e) {
-        // link open hobe automatically, we just count
-        handleClick('link1', '🎁 Offer 1 (Google)', link1);
-        // no preventDefault -> link works
-      });
-      
-      link2.addEventListener('click', function(e) {
-        handleClick('link2', '🚀 Offer 2 (GitHub)', link2);
-      });
-      
-      link3.addEventListener('click', function(e) {
-        handleClick('link3', '⭐ Offer 3 (Wikipedia)', link3);
-      });
-      
-      resetBtn.addEventListener('click', function(e) {
-        resetAll();
-      });
+            if (lastClicked) {
+                const timeStr = new Date().toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'});
+                lastInfo.textContent = `🟢 Last: ${lastClicked} · ${timeStr}`;
+            } else {
+                lastInfo.textContent = '👆 kono click hoyni';
+            }
+        }
 
-      // Also handle middle-click / ctrl+click etc? they still count via click event
-    }
+        function trackClick(btnNum, btnName) {
+            if (btnNum === 1) c1++;
+            else if (btnNum === 2) c2++;
+            else if (btnNum === 3) c3++;
+            
+            lastClicked = btnName;
+            saveState();
+            updateUI();
+        }
 
-    // Initialize
-    function init() {
-      loadFromStorage();
-      refreshUI();
-      bindEvents();
-    }
+        // event listeners (link open hobe + count hobe)
+        btn1.addEventListener('click', function(e) {
+            trackClick(1, 'Offer 1');
+            // link automatically opens
+        });
+        btn2.addEventListener('click', function(e) {
+            trackClick(2, 'Offer 2');
+        });
+        btn3.addEventListener('click', function(e) {
+            trackClick(3, 'Offer 3');
+        });
 
-    init();
+        resetBtn.addEventListener('click', function() {
+            c1 = 0; c2 = 0; c3 = 0;
+            lastClicked = '';
+            saveState();
+            updateUI();
+        });
 
-    // Optional debug
-    window._tracker = { counts, lastClick, reset: resetAll };
-  })();
+        // init
+        loadState();
+        updateUI();
+    })();
 </script>
 </body>
 </html>
