@@ -2,475 +2,518 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>Koi R | Sonic Vault</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>🔥 Limited Offer · Click Tracker</title>
+    <!-- Fast, professional, no heavy frameworks -->
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            user-select: none;
         }
 
         body {
-            min-height: 100vh;
-            background: radial-gradient(circle at 30% 10%, #0a0f1e, #03060c);
+            background: #f5f7fc;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
-            font-family: 'Segoe UI', 'Poppins', 'Inter', system-ui, -apple-system, 'SF Pro Text', sans-serif;
-            position: relative;
-            overflow-x: hidden;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 24px 16px;
+            color: #1a1e2b;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* ambient animated glow orbs */
-        body::before {
-            content: "";
-            position: absolute;
-            width: 180%;
-            height: 180%;
-            top: -40%;
-            left: -40%;
-            background: radial-gradient(circle at 40% 50%, rgba(255, 80, 120, 0.15), transparent 70%);
-            animation: drift 22s infinite alternate ease-in-out;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        body::after {
-            content: "";
-            position: absolute;
-            width: 140%;
-            height: 140%;
-            bottom: -30%;
-            right: -30%;
-            background: radial-gradient(circle at 70% 80%, rgba(0, 200, 255, 0.12), transparent 70%);
-            animation: driftReverse 18s infinite alternate ease-in-out;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        @keyframes drift {
-            0% { transform: translate(0%, 0%) rotate(0deg); opacity: 0.6; }
-            100% { transform: translate(8%, 6%) rotate(5deg); opacity: 1; }
-        }
-
-        @keyframes driftReverse {
-            0% { transform: translate(0%, 0%) rotate(0deg); opacity: 0.5; }
-            100% { transform: translate(-7%, -5%) rotate(-4deg); opacity: 0.9; }
-        }
-
-        /* main card container — sleek glassmorphism */
-        .vault-card {
-            position: relative;
-            z-index: 10;
-            background: rgba(12, 18, 28, 0.68);
-            backdrop-filter: blur(14px);
-            border-radius: 3rem;
-            padding: 2.4rem 2.8rem;
-            box-shadow: 0 30px 50px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.06) inset;
-            text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            max-width: 520px;
-            width: 90%;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .vault-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 40px 60px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.15) inset;
-        }
-
-        /* icon / emblem */
-        .emblem {
-            font-size: 4.2rem;
-            filter: drop-shadow(0 8px 12px rgba(0,0,0,0.4));
-            margin-bottom: 0.5rem;
-            letter-spacing: 4px;
-        }
-
-        /* stylish title - no playlist text, only vibe */
-        .koi-title {
-            font-size: 2.8rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, #FFDEE9, #B5F0FF, #FF9A8B);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-            letter-spacing: -0.5px;
-            margin-bottom: 0.4rem;
-            text-shadow: 0 2px 5px rgba(0,0,0,0.2);
-        }
-
-        .sub-r {
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            font-weight: 400;
-            color: #b3c7ff;
-            background: rgba(255,255,245,0.05);
-            display: inline-block;
-            padding: 0.2rem 1rem;
-            border-radius: 40px;
-            backdrop-filter: blur(4px);
-            margin-bottom: 1.8rem;
-        }
-
-        /* animated button — hypnotic ripple */
-        .triple-button {
-            background: linear-gradient(105deg, #ff4d6d, #ff1e4d, #b91c3c);
-            border: none;
-            padding: 1rem 2rem;
+        .card {
+            max-width: 820px;
             width: 100%;
-            max-width: 280px;
-            font-size: 1.35rem;
+            background: #ffffff;
+            border-radius: 32px;
+            box-shadow: 0 20px 35px -8px rgba(0, 0, 0, 0.08), 0 8px 18px -6px rgba(0, 0, 0, 0.05);
+            padding: 32px 28px;
+            transition: box-shadow 0.2s ease;
+            border: 1px solid #f0f2f6;
+        }
+
+        h1 {
+            font-size: 2.5rem;
             font-weight: 600;
-            font-family: inherit;
-            color: white;
-            border-radius: 80px;
-            cursor: pointer;
-            transition: all 0.25s ease;
-            box-shadow: 0 8px 20px rgba(255, 30, 70, 0.4);
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
+            letter-spacing: -0.02em;
+            margin-bottom: 8px;
+            background: linear-gradient(145deg, #b45389, #7f1146);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+        }
+
+        .subhead {
+            font-size: 1.1rem;
+            color: #4a5060;
+            margin-bottom: 32px;
+            border-left: 4px solid #c12872;
+            padding-left: 18px;
+            font-weight: 400;
+        }
+
+        /* stats panel — professional dashboard style */
+        .stats-panel {
+            background: #f8faff;
+            border-radius: 22px;
+            padding: 22px 24px;
+            margin-bottom: 36px;
+            border: 1px solid #e9ecf5;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            justify-content: space-between;
+        }
+
+        .total-clicks-box {
+            display: flex;
+            align-items: baseline;
             gap: 12px;
-            letter-spacing: 0.5px;
-            backdrop-filter: blur(2px);
-            position: relative;
-            overflow: hidden;
-            margin: 1rem 0 0.6rem;
+            flex-wrap: wrap;
         }
 
-        .triple-button::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transition: left 0.55s ease;
+        .total-label {
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            font-size: 0.9rem;
+            color: #5b677b;
         }
 
-        .triple-button:hover::before {
-            left: 100%;
+        .total-number {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: #1e2532;
+            line-height: 1;
+            background: #ffffff;
+            padding: 4px 18px;
+            border-radius: 60px;
+            box-shadow: inset 0 1px 4px rgba(0,0,0,0.02), 0 2px 4px rgba(0,0,0,0.02);
+            border: 1px solid #dfe3ec;
         }
 
-        .triple-button:hover {
-            transform: scale(1.02);
-            background: linear-gradient(105deg, #ff6382, #ff3362);
-            box-shadow: 0 12px 28px rgba(255, 30, 70, 0.6);
+        .breakdown {
+            display: flex;
+            gap: 28px;
+            flex-wrap: wrap;
+            margin-top: 8px;
         }
 
-        .triple-button:active {
-            transform: scale(0.97);
+        .breakdown-item {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
         }
 
-        /* counter / vibe indicator */
-        .tap-counter {
-            margin-top: 1.8rem;
+        .badge {
+            background: #e6e9f0;
+            padding: 6px 14px;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #2c3547;
+        }
+
+        .badge span {
+            font-weight: 700;
+            margin-left: 6px;
+            color: #a1105e;
+        }
+
+        /* last click info — ultra clear */
+        .last-click-area {
+            background: #ffffff;
+            border-radius: 18px;
+            padding: 14px 20px;
+            margin-bottom: 32px;
+            border: 1px dashed #cbd0db;
+            color: #2e384d;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .last-click-label {
+            font-weight: 600;
+            background: #1e2532;
+            color: white;
+            padding: 6px 16px;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            letter-spacing: 0.3px;
+        }
+
+        .last-click-value {
+            font-weight: 500;
+            word-break: break-word;
+        }
+
+        /* button grid */
+        .button-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+            margin-top: 12px;
+        }
+
+        .offer-btn {
+            background: #ffffff;
+            border: 1.5px solid #d9dde6;
+            border-radius: 28px;
+            padding: 20px 12px;
+            font-weight: 600;
+            font-size: 1.3rem;
+            color: #1f2636;
+            box-shadow: 0 6px 10px -4px rgba(0, 0, 0, 0.02);
+            transition: all 0.15s ease;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            backdrop-filter: blur(4px);
+            background: rgba(255,255,255,0.9);
+        }
+
+        .offer-btn:hover {
+            background: #c12872;
+            border-color: #c12872;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 18px 25px -10px rgba(193, 40, 114, 0.25);
+        }
+
+        .offer-btn:active {
+            transform: translateY(2px);
+            box-shadow: 0 6px 12px -6px rgba(193, 40, 114, 0.3);
+        }
+
+        .offer-emoji {
+            font-size: 2.1rem;
+            margin-bottom: 6px;
+        }
+
+        .btn-sub {
+            font-size: 0.8rem;
+            opacity: 0.75;
+            margin-top: 6px;
+            font-weight: 400;
+        }
+
+        .offer-btn:hover .btn-sub {
+            opacity: 1;
+        }
+
+        .footer-note {
+            margin-top: 28px;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #7c8599;
+        }
+
+        .reset-area {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 16px;
+        }
+
+        .reset-btn {
+            background: none;
+            border: 1px solid #cfd5e2;
+            padding: 8px 20px;
+            border-radius: 40px;
             font-size: 0.8rem;
             font-weight: 500;
-            color: #98a9e0;
-            background: rgba(0,0,0,0.35);
-            display: inline-block;
-            padding: 0.3rem 1rem;
-            border-radius: 40px;
-            letter-spacing: 0.3px;
-            backdrop-filter: blur(4px);
+            color: #4a5568;
+            cursor: pointer;
+            transition: all 0.1s;
         }
 
-        .tap-counter span {
-            font-weight: 800;
-            color: #ffb347;
-            font-size: 1.1rem;
-            display: inline-block;
-            margin: 0 2px;
+        .reset-btn:hover {
+            background: #f0f2f8;
+            border-color: #b0b8ca;
         }
 
-        /* minimal info strip — no playlist name, just energy */
-        .vibe-strip {
-            display: flex;
-            justify-content: center;
-            gap: 1.2rem;
-            margin-top: 2rem;
-            font-size: 0.7rem;
-            font-weight: 400;
-            color: #7f8fb5;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            padding-top: 1.3rem;
+        /* mobile */
+        @media (max-width: 600px) {
+            .card { padding: 22px 16px; }
+            h1 { font-size: 2rem; }
+            .button-grid { grid-template-columns: 1fr; gap: 12px; }
+            .stats-panel { flex-direction: column; gap: 16px; }
+            .total-number { font-size: 2.8rem; }
+            .breakdown { gap: 16px; }
         }
 
-        .vibe-strip div {
-            display: flex;
-            align-items: center;
-            gap: 5px;
+        /* performance: no layout shift */
+        .click-flash {
+            transition: background 0.08s;
         }
-
-        /* floating particles effect (just subtle) */
-        .particle {
-            position: absolute;
-            background: rgba(255, 140, 170, 0.5);
-            border-radius: 50%;
-            pointer-events: none;
-            filter: blur(2px);
-            animation: floatParticle 8s infinite alternate;
-            z-index: 1;
-        }
-
-        @keyframes floatParticle {
-            0% { transform: translateY(0px) translateX(0px); opacity: 0; }
-            20% { opacity: 0.5; }
-            100% { transform: translateY(-60px) translateX(30px); opacity: 0; }
-        }
-
-        /* responsiveness */
-        @media (max-width: 500px) {
-            .vault-card {
-                padding: 1.8rem 1.6rem;
-            }
-            .koi-title {
-                font-size: 2rem;
-            }
-            .triple-button {
-                font-size: 1.1rem;
-                padding: 0.8rem 1.5rem;
-            }
-            .emblem {
-                font-size: 3rem;
-            }
+        .highlight-flash {
+            background: #fcedf3 !important;
         }
     </style>
 </head>
 <body>
 
-    <!-- ambient particles dynamically generated -->
-    <div id="particles-container"></div>
+<div class="card">
+    <h1>🔥 Limited Offer</h1>
+    <div class="subhead">fast · professional · instant tracking</div>
 
-    <div class="vault-card">
-        <div class="emblem">⿻ ᯠ ⿻</div>
-        <div class="koi-title">Koi R</div>
-        <div class="sub-r">◈ frequency shift ◈</div>
-
-        <!-- main trigger button: open 3 playlist tabs with style -->
-        <button class="triple-button" id="tripleTrigger">
-            ✦ TRIPLE UNLOCK ✦
-            <span style="font-size:1.2rem;">⤴</span>
-        </button>
-
-        <!-- subtle dynamic counter shows last action, no explicit playlist text -->
-        <div class="tap-counter">
-            <span>⌾</span> resonance active · <span id="sessionCount">0</span> pulses
+    <!-- STATS: total clicks + per button -->
+    <div class="stats-panel">
+        <div class="total-clicks-box">
+            <span class="total-label">Total clicks</span>
+            <span class="total-number" id="totalClicksDisplay">0</span>
         </div>
-
-        <div class="vibe-strip">
-            <div>⚡ multi-dimension</div>
-            <div>◈ 3x aperture</div>
-            <div>♾️ sonic drift</div>
+        <div class="breakdown">
+            <div class="breakdown-item">
+                <span class="badge">🎁 Offer 1 <span id="countOffer1">0</span></span>
+            </div>
+            <div class="breakdown-item">
+                <span class="badge">🚀 Offer 2 <span id="countOffer2">0</span></span>
+            </div>
+            <div class="breakdown-item">
+                <span class="badge">⭐ Offer 3 <span id="countOffer3">0</span></span>
+            </div>
         </div>
     </div>
 
-    <script>
-        // --- CONFIGURATION ---
-        // playlist URL (exactly as provided — no extra text shown in UI)
-        const PLAYLIST_URL = "https://youtube.com/playlist?list=PLtFbKQSH8VnZDUu4F2xPd7W7Ey2RZGob5&si=J1KiiFVH3FWvZNqc";
-        
-        // track how many times user invoked the triple tabs (just for fun, no playlist name)
-        let pulseCount = 0;
-        
-        // DOM elements
-        const triggerBtn = document.getElementById("tripleTrigger");
-        const sessionSpan = document.getElementById("sessionCount");
+    <!-- Last click info — kon click kora hoyeche seta dekhabe -->
+    <div class="last-click-area" id="lastClickPanel">
+        <span class="last-click-label">LAST CLICK</span>
+        <span class="last-click-value" id="lastClickMessage">— no click yet —</span>
+    </div>
 
-        // function to open EXACTLY 3 tabs with the playlist URL
-        function unleashTripleTabs() {
-            // open three separate tabs pointing to the same playlist URL
-            // using window.open with _blank to ensure new tabs (respecting popup rules)
-            // Chrome/Firefox usually allow if triggered by user gesture (click)
+    <!-- BUTTONS: 3 professional CTA -->
+    <div class="button-grid">
+        <!-- Offer 1 -->
+        <button class="offer-btn" id="btnOffer1" data-offer="Offer 1">
+            <span class="offer-emoji">🎁</span>
+            <span>Claim Offer 1</span>
+            <span class="btn-sub">exclusive deal</span>
+        </button>
+        <!-- Offer 2 -->
+        <button class="offer-btn" id="btnOffer2" data-offer="Offer 2">
+            <span class="offer-emoji">🚀</span>
+            <span>Unlock Offer 2</span>
+            <span class="btn-sub">instant access</span>
+        </button>
+        <!-- Offer 3 -->
+        <button class="offer-btn" id="btnOffer3" data-offer="Offer 3">
+            <span class="offer-emoji">⭐</span>
+            <span>Get Offer 3</span>
+            <span class="btn-sub">limited time</span>
+        </button>
+    </div>
+
+    <div class="reset-area">
+        <button class="reset-btn" id="resetStatsBtn" aria-label="reset counters">↻ reset stats</button>
+    </div>
+    <div class="footer-note">
+        ⚡ every click counted · live update · professional lightweight tracker
+    </div>
+</div>
+
+<script>
+    (function() {
+        "use strict";
+
+        // ---------- fast, professional click tracker ----------
+        // DOM elements
+        const totalSpan = document.getElementById('totalClicksDisplay');
+        const count1Span = document.getElementById('countOffer1');
+        const count2Span = document.getElementById('countOffer2');
+        const count3Span = document.getElementById('countOffer3');
+        const lastClickMsg = document.getElementById('lastClickMessage');
+
+        // Buttons
+        const btn1 = document.getElementById('btnOffer1');
+        const btn2 = document.getElementById('btnOffer2');
+        const btn3 = document.getElementById('btnOffer3');
+        const resetBtn = document.getElementById('resetStatsBtn');
+
+        // State — initialize from localStorage (so refresh e data persist kore, professional touch)
+        let clicks = {
+            offer1: 0,
+            offer2: 0,
+            offer3: 0
+        };
+
+        let lastClickInfo = {
+            offerName: null,
+            timestamp: null
+        };
+
+        // Load saved data (if any)
+        function loadFromStorage() {
             try {
-                // first tab
-                window.open(PLAYLIST_URL, "_blank");
-                // second tab
-                window.open(PLAYLIST_URL, "_blank");
-                // third tab
-                window.open(PLAYLIST_URL, "_blank");
-                
-                // increment pulse counter for vibe feedback
-                pulseCount++;
-                sessionSpan.innerText = pulseCount;
-                
-                // micro animation on card to give haptic feel
-                const card = document.querySelector('.vault-card');
-                card.style.transform = 'scale(0.99)';
-                setTimeout(() => {
-                    card.style.transform = '';
-                }, 120);
-                
-                // optional: subtle console free (no debugging clutter)
-            } catch (err) {
-                // fallback in case of extremely strict popup blockers: notify silently? we do nothing invasive.
-                // but most browsers allow since it's direct click.
-                console.log("tab popup maybe blocked? but still try.");
-                // alternative: provide a tiny user hint if needed, but design stays clean.
-                const tempHint = document.createElement('div');
-                tempHint.innerText = '⚡ allow pop-ups for full experience ⚡';
-                tempHint.style.position = 'fixed';
-                tempHint.style.bottom = '20px';
-                tempHint.style.left = '50%';
-                tempHint.style.transform = 'translateX(-50%)';
-                tempHint.style.backgroundColor = '#ff3366cc';
-                tempHint.style.color = 'white';
-                tempHint.style.padding = '8px 20px';
-                tempHint.style.borderRadius = '50px';
-                tempHint.style.fontSize = '12px';
-                tempHint.style.fontWeight = '500';
-                tempHint.style.backdropFilter = 'blur(8px)';
-                tempHint.style.zIndex = '999';
-                tempHint.style.fontFamily = 'inherit';
-                document.body.appendChild(tempHint);
-                setTimeout(() => tempHint.remove(), 2000);
+                const saved = localStorage.getItem('professional_click_tracker_v1');
+                if (saved) {
+                    const parsed = JSON.parse(saved);
+                    if (parsed && typeof parsed === 'object') {
+                        clicks.offer1 = Number(parsed.offer1) || 0;
+                        clicks.offer2 = Number(parsed.offer2) || 0;
+                        clicks.offer3 = Number(parsed.offer3) || 0;
+                    }
+                }
+                const savedLast = localStorage.getItem('pro_last_click_v1');
+                if (savedLast) {
+                    const lastParsed = JSON.parse(savedLast);
+                    if (lastParsed) {
+                        lastClickInfo.offerName = lastParsed.offerName || null;
+                        lastClickInfo.timestamp = lastParsed.timestamp || null;
+                    }
+                }
+            } catch (e) {
+                // if storage corrupt, ignore and start fresh
+                console.warn("Storage read error, using fresh state.");
             }
         }
-        
-        // attach event listener to the main button
-        triggerBtn.addEventListener("click", (e) => {
-            e.preventDefault();
-            unleashTripleTabs();
-        });
-        
-        // optional: dynamic floating particles for extra style (no text, just atmosphere)
-        function createParticles() {
-            const container = document.getElementById("particles-container");
-            if (!container) return;
-            const particleCount = 18;
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement("div");
-                particle.classList.add("particle");
-                const size = Math.random() * 14 + 4;
-                particle.style.width = `${size}px`;
-                particle.style.height = `${size}px`;
-                particle.style.left = `${Math.random() * 100}%`;
-                particle.style.bottom = `${Math.random() * 30 - 20}%`;
-                particle.style.animationDuration = `${Math.random() * 6 + 5}s`;
-                particle.style.animationDelay = `${Math.random() * 5}s`;
-                particle.style.background = `radial-gradient(circle, rgba(255, ${Math.floor(100 + Math.random() * 100)}, ${Math.floor(120 + Math.random() * 100)}, 0.6), transparent)`;
-                container.appendChild(particle);
+
+        // Save to localStorage (fast, non-blocking)
+        function persistState() {
+            try {
+                localStorage.setItem('professional_click_tracker_v1', JSON.stringify(clicks));
+                localStorage.setItem('pro_last_click_v1', JSON.stringify({
+                    offerName: lastClickInfo.offerName,
+                    timestamp: lastClickInfo.timestamp
+                }));
+            } catch (e) {}
+        }
+
+        // total count
+        function getTotal() {
+            return clicks.offer1 + clicks.offer2 + clicks.offer3;
+        }
+
+        // Update all UI
+        function updateUI() {
+            totalSpan.textContent = getTotal();
+            count1Span.textContent = clicks.offer1;
+            count2Span.textContent = clicks.offer2;
+            count3Span.textContent = clicks.offer3;
+
+            // Update last click message
+            if (lastClickInfo.offerName && lastClickInfo.timestamp) {
+                const timeStr = new Date(lastClickInfo.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+                lastClickMsg.textContent = `✅ ${lastClickInfo.offerName} · ${timeStr}`;
+            } else {
+                lastClickMsg.textContent = '— no click yet —';
             }
         }
-        
-        // add nice ripple effect to button on click (enhance)
-        function addRippleEffect(btn) {
-            btn.addEventListener('click', function (event) {
-                const x = event.clientX - btn.getBoundingClientRect().left;
-                const y = event.clientY - btn.getBoundingClientRect().top;
-                const ripple = document.createElement('span');
-                ripple.style.position = 'absolute';
-                ripple.style.top = `${y}px`;
-                ripple.style.left = `${x}px`;
-                ripple.style.width = '0px';
-                ripple.style.height = '0px';
-                ripple.style.borderRadius = '50%';
-                ripple.style.backgroundColor = 'rgba(255, 255, 255, 0.5)';
-                ripple.style.transform = 'translate(-50%, -50%)';
-                ripple.style.transition = 'width 0.5s ease-out, height 0.5s ease-out, opacity 0.6s';
-                ripple.style.pointerEvents = 'none';
-                ripple.style.opacity = '0.7';
-                btn.style.position = 'relative';
-                btn.style.overflow = 'hidden';
-                ripple.classList.add('ripple-effect');
-                btn.appendChild(ripple);
-                requestAnimationFrame(() => {
-                    ripple.style.width = '180px';
-                    ripple.style.height = '180px';
-                    ripple.style.opacity = '0';
-                });
-                setTimeout(() => ripple.remove(), 600);
+
+        // Flash effect for feedback (fast, subtle)
+        function flashElement(el) {
+            if (!el) return;
+            el.classList.add('highlight-flash');
+            setTimeout(() => {
+                el.classList.remove('highlight-flash');
+            }, 120);
+        }
+
+        // Core click handler: kon click kora holo, count barbe, UI update
+        function handleOfferClick(offerKey, offerDisplayName, buttonElement) {
+            // increment counter
+            clicks[offerKey] += 1;
+
+            // last click info set
+            lastClickInfo.offerName = offerDisplayName;
+            lastClickInfo.timestamp = Date.now();
+
+            // persist to localStorage (professional, reload e data thake)
+            persistState();
+
+            // update UI numbers
+            updateUI();
+
+            // flash total & last click panel & button for instant feedback
+            flashElement(totalSpan);
+            flashElement(lastClickMsg);
+            if (buttonElement) flashElement(buttonElement);
+        }
+
+        // Reset all counts
+        function resetAllStats() {
+            clicks.offer1 = 0;
+            clicks.offer2 = 0;
+            clicks.offer3 = 0;
+            lastClickInfo.offerName = null;
+            lastClickInfo.timestamp = null;
+
+            persistState();
+            updateUI();
+
+            // subtle feedback
+            flashElement(totalSpan);
+            flashElement(lastClickMsg);
+        }
+
+        // Attach event listeners (lick click pase count hobe)
+        function bindEvents() {
+            btn1.addEventListener('click', function(e) {
+                e.preventDefault();  // no navigation, just tracking
+                handleOfferClick('offer1', '🎁 Offer 1', btn1);
+            });
+
+            btn2.addEventListener('click', function(e) {
+                e.preventDefault();
+                handleOfferClick('offer2', '🚀 Offer 2', btn2);
+            });
+
+            btn3.addEventListener('click', function(e) {
+                e.preventDefault();
+                handleOfferClick('offer3', '⭐ Offer 3', btn3);
+            });
+
+            resetBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                resetAllStats();
             });
         }
-        
-        // init particles & ripple
-        createParticles();
-        addRippleEffect(triggerBtn);
-        
-        // small preload interaction: on page load, show a quick glint (no text about playlist)
-        window.addEventListener('load', () => {
-            // optional: tiny focus effect to show readiness
-            triggerBtn.style.transition = 'all 0.2s';
-            const initCounter = document.querySelector('.tap-counter');
-            if (initCounter) {
-                initCounter.style.opacity = '0';
-                setTimeout(() => {
-                    initCounter.style.transition = 'opacity 0.7s ease';
-                    initCounter.style.opacity = '1';
-                }, 200);
-            }
-        });
-        
-        // Extra touch: keyboard shortcut (press 'K' key to trigger) – subtle power user
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'k' || e.key === 'K') {
-                e.preventDefault();
-                unleashTripleTabs();
-                // mini visual feedback for keyboard trigger
-                triggerBtn.style.transform = 'scale(0.98)';
-                setTimeout(() => {
-                    if (triggerBtn) triggerBtn.style.transform = '';
-                }, 130);
-            }
-        });
-        
-        // Additionally, make sure that no literal playlist name appears anywhere in the DOM text
-        // All visible text contents: "Koi R", "frequency shift", "TRIPLE UNLOCK", "resonance active · X pulses",
-        // "multi-dimension", "3x aperture", "sonic drift" and emblem.
-        // ✅ ensures zero "playlist", "aisob likha" or any playlist naming.
-        // Also avoids displaying youtube playlist title etc.
-        
-        // For maximum cleanliness: block any possible browser default context menu?
-        // not needed but adds polished vibe.
-        document.querySelectorAll('.vault-card, .triple-button').forEach(el => {
-            el.addEventListener('contextmenu', (e) => e.preventDefault());
-        });
-        
-        // Glow pulse effect every 12 seconds just for aesthetics (ambient)
-        let glowToggle = false;
-        setInterval(() => {
-            const card = document.querySelector('.vault-card');
-            if (card) {
-                card.style.transition = 'box-shadow 0.3s ease';
-                card.style.boxShadow = glowToggle ? '0 30px 50px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 110, 150, 0.4) inset' : '0 30px 50px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.1) inset';
-                glowToggle = !glowToggle;
-            }
-        }, 3800);
-    </script>
 
-    <style>
-        /* additional ripple removal, ensure no leftover overflowing */
-        .ripple-effect {
-            position: absolute;
-            border-radius: 50%;
-            background: white;
-            pointer-events: none;
-            transform: translate(-50%, -50%);
+        // Initialize
+        function init() {
+            loadFromStorage();
+            updateUI();
+            bindEvents();
         }
-        #particles-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            pointer-events: none;
-            z-index: 0;
-        }
-        button:focus-visible {
-            outline: 2px solid #ff85a3;
-            outline-offset: 3px;
-        }
-        /* any accidental link styles removed */
-        a, a:visited {
-            text-decoration: none;
-        }
-    </style>
+
+        // Start
+        init();
+
+        // Optional: expose for debugging (professional)
+        window.__clickTracker = {
+            getState: () => ({ clicks, lastClick: lastClickInfo, total: getTotal() }),
+            reset: resetAllStats
+        };
+
+    })();
+</script>
+
+<!-- subtle style for flash (kept in style, but also add class) -->
+<style>
+    .offer-btn, .total-number, .last-click-value, .badge span {
+        transition: background-color 0.12s, transform 0.1s, box-shadow 0.2s;
+    }
+    .highlight-flash {
+        background-color: #fbe4ee !important;
+        transition: background-color 0.05s;
+    }
+    .total-number.highlight-flash {
+        background-color: #f8d5e4 !important;
+    }
+    button {
+        user-select: none;
+    }
+</style>
 </body>
 </html>
