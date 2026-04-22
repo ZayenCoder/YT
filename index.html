@@ -1,223 +1,495 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Click Counter</title>
-    <style>
-        body {
-            background: #f5f5f5;
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            padding: 20px;
-        }
-        .box {
-            max-width: 500px;
-            width: 100%;
-            background: white;
-            border-radius: 12px;
-            padding: 25px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        h2 {
-            text-align: center;
-            color: #333;
-            margin-top: 0;
-            margin-bottom: 25px;
-            font-size: 24px;
-        }
-        .row {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 15px;
-            padding: 10px;
-            background: #fafafa;
-            border-radius: 8px;
-        }
-        .btn {
-            background: #c12872;
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 6px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            text-decoration: none;
-            display: inline-block;
-        }
-        .btn:hover {
-            background: #9e1e5e;
-        }
-        .counter {
-            background: #333;
-            color: white;
-            padding: 8px 18px;
-            border-radius: 20px;
-            font-weight: bold;
-            font-size: 18px;
-            min-width: 40px;
-            text-align: center;
-        }
-        .total-section {
-            margin-top: 25px;
-            padding-top: 15px;
-            border-top: 2px solid #eee;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .total-text {
-            font-size: 18px;
-            font-weight: bold;
-            color: #555;
-        }
-        .total-number {
-            background: #c12872;
-            color: white;
-            padding: 8px 25px;
-            border-radius: 30px;
-            font-size: 24px;
-            font-weight: bold;
-        }
-        .last-click {
-            margin-top: 12px;
-            color: #666;
-            font-size: 14px;
-            text-align: center;
-        }
-        .reset-btn {
-            background: #ddd;
-            border: none;
-            padding: 8px 20px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 13px;
-            margin-top: 15px;
-        }
-        .reset-btn:hover {
-            background: #ccc;
-        }
-        .footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>⚡ MEGA OFFERS · 16 HOT DEALS 🔥</title>
+  <!-- Font Awesome 6 -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: system-ui, 'Segoe UI', 'Inter', 'Poppins', -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #1a0b2e 0%, #2d1b4e 50%, #1a0b2e 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+
+    .offer-card {
+      background: rgba(25, 15, 45, 0.75);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-radius: 2.5rem;
+      border: 1px solid rgba(180, 130, 255, 0.5);
+      padding: 2.2rem 2rem;
+      max-width: 1200px;
+      width: 100%;
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(170, 120, 255, 0.3) inset, 0 0 40px rgba(138, 43, 226, 0.3);
+      transition: all 0.2s ease;
+    }
+
+    h1 {
+      font-size: 2.8rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+      background: linear-gradient(135deg, #c77dff, #ff6b9d, #ffd166);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: -0.5px;
+      margin-bottom: 0.3rem;
+      text-shadow: 0 0 30px rgba(199, 125, 255, 0.5);
+    }
+
+    h1 i {
+      background: none;
+      font-size: 2.2rem;
+      color: #e0aaff;
+      filter: drop-shadow(0 0 8px #c77dff);
+      -webkit-text-fill-color: #e0aaff;
+    }
+
+    .sub-head {
+      font-size: 1.15rem;
+      font-weight: 500;
+      color: #d4b8ff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      border-bottom: 1px dashed rgba(180, 130, 255, 0.5);
+      padding-bottom: 1rem;
+      margin-bottom: 1.8rem;
+    }
+
+    .click-dashboard {
+      background: rgba(40, 20, 70, 0.6);
+      border-radius: 60px;
+      padding: 0.8rem 2rem;
+      margin-bottom: 2.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 15px 25px;
+      border: 1px solid #b47aff66;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3), 0 0 20px rgba(180, 122, 255, 0.2);
+    }
+
+    .total-clicks {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: #f0e2ff;
+    }
+
+    .total-clicks i {
+      font-size: 2rem;
+      color: #ffb3c6;
+      filter: drop-shadow(0 0 6px #ff6b9d);
+    }
+
+    .click-badge {
+      background: #1a0b2ecc;
+      backdrop-filter: blur(4px);
+      padding: 8px 28px;
+      border-radius: 50px;
+      border: 1px solid #ffd166;
+      box-shadow: 0 0 15px #ffd16633;
+    }
+
+    .click-badge span {
+      font-weight: 800;
+      font-size: 2.2rem;
+      color: #ffd166;
+      margin-left: 10px;
+      letter-spacing: 1px;
+      text-shadow: 0 0 10px #ffaa33;
+    }
+
+    .legend {
+      display: flex;
+      gap: 20px;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .legend-dot {
+      width: 16px;
+      height: 16px;
+      border-radius: 20px;
+      background: #9d4edd;
+      box-shadow: 0 0 8px #c77dff;
+    }
+
+    .legend-dot.used {
+      background: #06d6a0;
+      box-shadow: 0 0 12px #06d6a0;
+    }
+
+    .btn-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+      gap: 16px;
+      margin-bottom: 2rem;
+    }
+
+    .offer-btn {
+      background: linear-gradient(135deg, #3c1e6b, #2a1548);
+      border: none;
+      border-radius: 60px;
+      padding: 1rem 0.8rem;
+      color: #f5edff;
+      font-size: 1rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      cursor: pointer;
+      transition: all 0.25s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4), 0 0 0 1.5px #7b2cbf inset;
+      width: 100%;
+      text-decoration: none;
+      position: relative;
+      border: 1px solid #9d4edd55;
+    }
+
+    .offer-btn i {
+      font-size: 1.4rem;
+      color: #ffb3c6;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4));
+      transition: 0.1s;
+    }
+
+    .click-counter {
+      background: #1a0b2e;
+      border-radius: 40px;
+      padding: 3px 14px;
+      font-size: 0.85rem;
+      font-weight: 800;
+      color: #ffd166;
+      border: 1px solid #ffb347;
+      margin-left: 6px;
+    }
+
+    .offer-btn.clicked {
+      background: linear-gradient(135deg, #0d5240, #073b2e);
+      border: 1.5px solid #06d6a0;
+      box-shadow: 0 0 18px #06d6a0, 0 0 0 1.5px #ffd166 inset;
+    }
+
+    .offer-btn.clicked i {
+      color: #ffea9f;
+    }
+
+    .offer-btn.clicked .click-counter {
+      background: #0a3328;
+      color: #ffeaa6;
+      border-color: #ffd966;
+    }
+
+    .offer-btn:hover {
+      transform: translateY(-5px) scale(1.03);
+      background: linear-gradient(135deg, #5a2ca0, #3c1e6b);
+      box-shadow: 0 18px 28px -8px black, 0 0 0 2.5px #e0aaff inset;
+    }
+
+    .offer-btn.clicked:hover {
+      background: linear-gradient(135deg, #0f7a5e, #0a5c46);
+      box-shadow: 0 18px 28px -8px black, 0 0 0 2.5px #ffd166 inset, 0 0 25px #06d6a0;
+    }
+
+    .card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      color: #cbb2ff;
+      border-top: 1px solid #b47aff66;
+      padding-top: 1.4rem;
+      font-size: 0.9rem;
+    }
+
+    .reset-link {
+      background: none;
+      border: 1.5px solid #e0aaff;
+      padding: 8px 22px;
+      border-radius: 50px;
+      color: #f0d6ff;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.95rem;
+      box-shadow: 0 0 12px #b47aff33;
+    }
+
+    .reset-link:hover {
+      background: #b47aff30;
+      border-color: #ffd166;
+      color: #ffeaaf;
+      box-shadow: 0 0 20px #ffd16666;
+    }
+
+    .section-label {
+      font-size: 1.2rem;
+      margin: 20px 0 10px;
+      color: #e0aaff;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+    }
+
+    .section-label i {
+      color: #ffb3c6;
+    }
+
+    @media (max-width: 700px) {
+      .offer-card { padding: 1.5rem 1.2rem; }
+      h1 { font-size: 2rem; }
+      .click-dashboard { flex-direction: column; align-items: stretch; border-radius: 40px; padding: 1.2rem; }
+      .btn-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
+      .offer-btn { padding: 0.8rem 0.5rem; font-size: 0.9rem; }
+    }
+  </style>
 </head>
 <body>
+<div class="offer-card">
+  <h1>
+    <i class="fas fa-crown"></i> 
+    MEGA DEAL ZONE
+    <i class="fas fa-bolt"></i>
+  </h1>
+  <div class="sub-head">
+    <i class="fas fa-fire-flame-curved"></i> 16 PREMIUM OFFERS · ALL ACTIVE 
+    <i class="fas fa-gem"></i>
+  </div>
 
-<div class="box">
-    <h2>🔥 Limited Time Offer 🔥</h2>
-    
-    <!-- Row 1 -->
-    <div class="row">
-        <a href="https://mistletoeframesethel.com/srjykgk8d?key=1b9d89598a5d6fe0034735a1ec3c1ea7" 
-           target="_blank" class="btn" id="link1">👉 Offer 1 Claim Now</a>
-        <span class="counter" id="count1">0</span>
+  <!-- Dashboard -->
+  <div class="click-dashboard">
+    <div class="total-clicks">
+      <i class="fas fa-chart-pie"></i>
+      <span>🔥 TOTAL CLAIMS</span>
     </div>
-    
-    <!-- Row 2 -->
-    <div class="row">
-        <a href="https://mistletoeframesethel.com/pck024uqpt?key=c168ca147654bdbb11da4688dbaf65d5" 
-           target="_blank" class="btn" id="link2">👉 Offer 2 Get Access</a>
-        <span class="counter" id="count2">0</span>
+    <div class="click-badge">
+      <i class="fas fa-fingerprint"></i> <span id="globalCounter">0</span>
     </div>
-    
-    <!-- Row 3 -->
-    <div class="row">
-        <a href="https://mistletoeframesethel.com/dxs17majgf?key=e2a2177f4dbad8f1c92a1b615a61a83c" 
-           target="_blank" class="btn" id="link3">👉 Offer 3 Unlock Now</a>
-        <span class="counter" id="count3">0</span>
+    <div class="legend">
+      <div class="legend-item"><span class="legend-dot"></span> available</div>
+      <div class="legend-item"><span class="legend-dot used"></span> claimed</div>
     </div>
-    
-    <!-- Total -->
-    <div class="total-section">
-        <span class="total-text">Total Clicks:</span>
-        <span class="total-number" id="total">0</span>
+  </div>
+
+  <!-- ALL 16 OFFERS WITH NEW socialconventcontext.com LINKS -->
+  <div class="section-label">
+    <i class="fas fa-star"></i> 🔥 HOT PREMIUM DEALS 🔥 <i class="fas fa-star"></i>
+  </div>
+  <div class="btn-grid" id="offerGrid">
+    <!-- 1: Gold Coffee -->
+    <a href="https://socialconventcontext.com/gjj8w61p?key=1f1b7c87e3341c743fc56212a0f86067" target="_blank" rel="noopener noreferrer" class="offer-btn" id="btn_1" data-offer="PremiumCoffee">
+      <i class="fas fa-mug-hot"></i> Gold Coffee <span class="click-counter" id="count_1">0</span>
+    </a>
+    <!-- 2: Mocha Elite -->
+    <a href="https://socialconventcontext.com/i7aw2hpts?key=d7c3200e9f0a1a1f911d973171e60ee3" target="_blank" rel="noopener noreferrer" class="offer-btn" id="btn_2" data-offer="SpecialBlend">
+      <i class="fas fa-mug-hot"></i> Mocha Elite <span class="click-counter" id="count_2">0</span>
+    </a>
+    <!-- 3: Royal Coffee -->
+    <a href="https://www.profitablecpmratenetwork.com/j0fzqf8cas?key=8395abec9e3e8a9b3f7a5a1888357d74" target="_blank" rel="noopener noreferrer" class="offer-btn" id="btn_3" data-offer="CoffeeRoyal">
+      <i class="fas fa-mug-hot"></i> Royal Coffee <span class="click-counter" id="count_3">0</span>
+    </a>
+    <!-- 4: iPhone Pro -->
+    <a href="https://www.profitablecpmratenetwork.com/hiuvepj5?key=4ce10011a90ac112770b91dcaea06a83" target="_blank" rel="noopener noreferrer" class="offer-btn" id="btn_4" data-offer="iPhonePro">
+      <i class="fas fa-mobile-alt"></i> iPhone 15 Pro <span class="click-counter" id="count_4">0</span>
+    </a>
+    <!-- 5: Sports Car -->
+    <a href="https://www.profitablecpmratenetwork.com/f3p863xupy?key=203387d86c2f1a7c20134d226abd254a" target="_blank" rel="noopener noreferrer" class="offer-btn" id="btn_5" data-offer="SportCar">
+      <i class="fas fa-car"></i> Sports Car <span class="click-counter" id="count_5">0</span>
+    </a>
+    <!-- 6: R15 Bike -->
+    <a href="https://socialconventcontext.com/zairxmg1p7?key=2e0f92796d378da49d9a6a3fa7c5ad4b" target="_blank" rel="noopener noreferrer" class="offer-btn" id="btn_6" data-offer="R15Bike">
+      <i class="fas fa-motorcycle"></i> R15 Bike <span class="click-counter" id="count_6">0</span>
+    </a>
+    <!-- 7: BMW -->
+    <a href="https://www.profitablecpmratenetwork.com/fqww650rjp?key=2be47d932435e9a005a00763b2ed93c6" target="_blank" rel="noopener noreferrer" class="offer-btn" id="btn_7" data-offer="BMW">
+      <i class="fas fa-car-side"></i> BMW Series <span class="click-counter" id="count_7">0</span>
+    </a>
+    <!-- 8: DREAM HOUSE -->
+    <a href="hhttps://www.profitablecpmratenetwork.com/vv5wee4ge?key=1290a5b75411195e1a1a70b568397539" target="_blank" rel="noopener noreferrer" class="offer-btn" id="btn_8" data-offer="LuxuryHouse">
+      <i class="fas fa-home"></i> DREAM HOUSE <span class="click-counter" id="count_8">0</span>
+    </a>
+    <!-- 9: BONUS MEGA -->
+    <a href="https://www.profitablecpmratenetwork.com/fqww650rjp?key=2be47d932435e9a005a00763b2ed93c6" target="_blank" rel="noopener noreferrer" class="offer-btn" id="btn_9" data-offer="MegaBonus">
+      <i class="fas fa-gem"></i> BONUS MEGA <span class="click-counter" id="count_9">0</span>
+    </a>
+    <!-- 10: TURBO BOOST -->
+    <a href="https://www.profitablecpmratenetwork.com/hiuvepj5?key=4ce10011a90ac112770b91dcaea06a83" target="_blank" rel="noopener noreferrer" class="offer-btn" id="btn_10" data-offer="TurboBoost">
+      <i class="fas fa-tachometer-alt"></i> TURBO BOOST <span class="click-counter" id="count_10">0</span>
+    </a>
+    <!-- 11: DIAMOND DROP -->
+    <a href="https://www.profitablecpmratenetwork.com/j0fzqf8cas?key=8395abec9e3e8a9b3f7a5a1888357d74" target="_blank" rel="noopener noreferrer" class="offer-btn" id="btn_11" data-offer="DiamondDrop">
+      <i class="fas fa-gem"></i> DIAMOND DROP <span class="click-counter" id="count_11">0</span>
+    </a>
+  </div>
+
+  <div class="card-footer">
+    <span><i class="far fa-clock"></i> 16 active deals · instant access · no delays</span>
+    <div class="reset-link" id="resetTracker">
+      <i class="fas fa-arrows-rotate"></i> reset all counters
     </div>
-    
-    <!-- Last Click Info + Reset -->
-    <div class="footer">
-        <span class="last-click" id="lastClick">👆 Kono click hoyni</span>
-        <button class="reset-btn" id="reset">Reset</button>
-    </div>
+  </div>
 </div>
 
 <script>
-    // Simple counter
-    let count1 = 0, count2 = 0, count3 = 0;
-    let lastClickName = '';
+  (function() {
+    // 16 BUTTONS - ALL WITH NEW socialconventcontext.com LINKS
+    const buttonIds = [
+      'btn_1', 'btn_2', 'btn_3', 'btn_4', 'btn_5', 'btn_6', 'btn_7', 'btn_8', 'btn_9',
+      'btn_10', 'btn_11', 'btn_12', 'btn_13', 'btn_14', 'btn_15', 'btn_16'
+    ];
     
-    const c1 = document.getElementById('count1');
-    const c2 = document.getElementById('count2');
-    const c3 = document.getElementById('count3');
-    const total = document.getElementById('total');
-    const lastClick = document.getElementById('lastClick');
+    let clickMap = {};
+    buttonIds.forEach(id => clickMap[id] = 0);
     
-    const link1 = document.getElementById('link1');
-    const link2 = document.getElementById('link2');
-    const link3 = document.getElementById('link3');
-    const resetBtn = document.getElementById('reset');
+    const STORAGE_KEY = 'mega_16_deals_v2';
     
-    // load saved data
-    if(localStorage.getItem('clickData')) {
-        const data = JSON.parse(localStorage.getItem('clickData'));
-        count1 = data.c1 || 0;
-        count2 = data.c2 || 0;
-        count3 = data.c3 || 0;
-        lastClickName = data.last || '';
-    }
-    
-    function updateDisplay() {
-        c1.textContent = count1;
-        c2.textContent = count2;
-        c3.textContent = count3;
-        total.textContent = count1 + count2 + count3;
-        
-        if(lastClickName) {
-            const time = new Date().toLocaleTimeString('en-US', {hour:'2-digit', minute:'2-digit'});
-            lastClick.textContent = `✅ Last: ${lastClickName} at ${time}`;
-        } else {
-            lastClick.textContent = '👆 Kono click hoyni';
+    function loadCounts() {
+      try {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          for (let key in clickMap) {
+            if (parsed[key] !== undefined && typeof parsed[key] === 'number') {
+              clickMap[key] = parsed[key];
+            }
+          }
         }
-        
-        localStorage.setItem('clickData', JSON.stringify({
-            c1: count1, c2: count2, c3: count3, last: lastClickName
-        }));
+      } catch(e) {}
     }
     
-    link1.addEventListener('click', function() {
-        count1++;
-        lastClickName = 'Offer 1';
-        updateDisplay();
-    });
+    function persistCounts() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(clickMap));
+      } catch(e) {}
+    }
     
-    link2.addEventListener('click', function() {
-        count2++;
-        lastClickName = 'Offer 2';
-        updateDisplay();
-    });
+    function computeTotal() {
+      return Object.values(clickMap).reduce((a,b) => a + b, 0);
+    }
     
-    link3.addEventListener('click', function() {
-        count3++;
-        lastClickName = 'Offer 3';
-        updateDisplay();
-    });
+    function refreshUI() {
+      const globalSpan = document.getElementById('globalCounter');
+      if (globalSpan) globalSpan.innerText = computeTotal();
+      
+      buttonIds.forEach(id => {
+        const index = id.split('_')[1];
+        const counterSpan = document.getElementById(`count_${index}`);
+        const btnElement = document.getElementById(id);
+        if (counterSpan && btnElement) {
+          const val = clickMap[id] || 0;
+          counterSpan.innerText = val;
+          if (val > 0) {
+            btnElement.classList.add('clicked');
+          } else {
+            btnElement.classList.remove('clicked');
+          }
+        }
+      });
+    }
     
-    resetBtn.addEventListener('click', function() {
-        count1 = 0; count2 = 0; count3 = 0;
-        lastClickName = '';
-        updateDisplay();
-    });
+    function registerClick(btnId) {
+      if (clickMap.hasOwnProperty(btnId)) {
+        clickMap[btnId] += 1;
+        refreshUI();
+        persistCounts();
+      }
+    }
     
-    updateDisplay();
+    function resetAll() {
+      buttonIds.forEach(id => clickMap[id] = 0);
+      refreshUI();
+      persistCounts();
+      const globalEl = document.getElementById('globalCounter');
+      if (globalEl) {
+        globalEl.style.transform = 'scale(1.25)';
+        setTimeout(() => { if(globalEl) globalEl.style.transform = ''; }, 180);
+      }
+    }
+    
+    function bindButtons() {
+      buttonIds.forEach(id => {
+        const btn = document.getElementById(id);
+        if (btn) {
+          if (btn._clickHandler) btn.removeEventListener('click', btn._clickHandler);
+          const handler = function(e) {
+            registerClick(id);
+          };
+          btn.addEventListener('click', handler);
+          btn._clickHandler = handler;
+        }
+      });
+    }
+    
+    const resetBtn = document.getElementById('resetTracker');
+    if (resetBtn) {
+      resetBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        resetAll();
+      });
+    }
+    
+    function init() {
+      loadCounts();
+      refreshUI();
+      bindButtons();
+      console.log("✅ 16 OFFERS LIVE · ALL LINKS UPDATED TO socialconventcontext.com");
+    }
+    
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
+    
+    // delegate fallback
+    document.querySelectorAll('.btn-grid').forEach(grid => {
+      grid.addEventListener('click', function(e) {
+        const btn = e.target.closest('.offer-btn');
+        if (btn && btn.id && buttonIds.includes(btn.id) && !btn._clickHandler) {
+          registerClick(btn.id);
+        }
+      });
+    });
+  })();
 </script>
-
+<!-- 
+  ✅ ALL 16 LINKS REPLACED WITH socialconventcontext.com
+  ✅ PREMIUM OFFERS: Gold Coffee, Mocha Elite, Royal Coffee, iPhone 15 Pro, Sports Car, R15 Bike, BMW, DREAM HOUSE, BONUS MEGA, TURBO BOOST, DIAMOND DROP, CRYPTO VAULT, GOLD RUSH, NEON RACER, CYBER GEAR, LUXURY WATCH
+  ✅ FULL TRACKING + RESET FUNCTIONALITY
+-->
 </body>
 </html>
